@@ -51,7 +51,7 @@ const projectsData = [
   },
   {
     id: 6,
-    title: 'VR PEC CSE BLOCK',
+    title: 'VR PEC CSE Block',
     category: 'Virtual Reality',
     status: 'COMPLETED',
     image: '/images/peccseblock.png',
@@ -60,7 +60,7 @@ const projectsData = [
   },
   {
     id: 7,
-    title: 'DMC ROOM PEC',
+    title: 'DMC Room PEC',
     category: '3D Modeling',
     status: 'COMPLETED',
     image: '/images/dmcroom.png',
@@ -69,7 +69,7 @@ const projectsData = [
   },
   {
     id: 8,
-    title: 'TEA SHOP',
+    title: 'Tea Shop',
     category: '3D Modeling',
     status: 'COMPLETED',
     image: '/images/tea.jpg',
@@ -79,7 +79,7 @@ const projectsData = [
   },
   {
     id: 9,
-    title: 'AR SOLAR SYSTEM',
+    title: 'Space Exploration AR',
     category: 'Augmented Reality',
     status: 'ON GOING',
     image: '/images/arsolarsystem.jpeg',
@@ -88,12 +88,21 @@ const projectsData = [
   },
   {
     id: 10,
-    title: 'VR HOME AUTOMATION',
+    title: 'VR Smart Home Automation',
     category: 'Virtual Reality',
-    status: 'ON GOING',
+    status: 'COMPLETED',
     image: '/images/vrhomeautomation.png',
-    tech: ['Unity', 'C#', 'XR Interaction Toolkit'],
+    tech: ['Unity', 'C#', 'VRIF'],
     filter: 'vr',
+  },
+  {
+    id: 11,
+    title: 'CuBuild AR',
+    category: 'Augmented Reality',
+    status: 'COMPLETED',
+    image: '/images/cubuildar.png',
+    tech: ['Unity', 'C#', 'AR Foundation'],
+    filter: 'ar',
   },
 ]
 

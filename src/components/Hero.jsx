@@ -39,7 +39,7 @@ export default function Hero() {
               <div className="hero__stat-label">YEAR EXP</div>
             </div>
             <div>
-              <div className="hero__stat-value">9</div>
+              <div className="hero__stat-value">10+</div>
               <div className="hero__stat-label">PROJECTS</div>
             </div>
             <div>
