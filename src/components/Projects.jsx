@@ -213,12 +213,12 @@ export default function Projects() {
     if (a.status !== b.status) {
       return a.status === 'COMPLETED' ? -1 : 1
     }
-    
+
     // 2. Sort by domain/category (AR -> VR -> 3D Modeling)
     const categoryOrder = { 'ar': 1, 'vr': 2, '3d-modeling': 3 }
     const orderA = categoryOrder[a.filter] || 99
     const orderB = categoryOrder[b.filter] || 99
-    
+
     return orderA - orderB
   })
 
