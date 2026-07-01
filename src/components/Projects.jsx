@@ -9,7 +9,7 @@ const projectsData = [
     image: '/images/jetturbine.png',
     tech: ['Unity', 'AR Foundation', 'ARCore', 'C#'],
     filter: 'ar',
-    demoVideo: '/My Projects Records/AR Jet Turbine.mp4',
+    demoVideo: 'https://drive.google.com/file/d/16a1ngRyyi6ACAC4rCh72L1lVXziHX7Jh/view?usp=sharing',
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const projectsData = [
     tech: ['Unity', 'VRIF', 'C#'],
     filter: 'vr',
     link: 'https://github.com/preeth-579/BowAndArrowVRGame',
-    demoVideo: '/My Projects Records/VR Bow and Arrow Game.mp4',
+    demoVideo: 'https://drive.google.com/file/d/1C2DWJhqo4KWEbQI08Vxg23zMAbJ_w8k9/view?usp=sharing',
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const projectsData = [
     image: '/images/vrvenipunture.png',
     tech: ['Unity', 'VRIF', 'C#'],
     filter: 'vr',
-    demoVideo: '/My Projects Records/VR Venipuncture Training.mp4',
+    demoVideo: 'https://drive.google.com/file/d/19XPXpde7klCDdDIsiZr7wEjnlqRpo327/view?usp=sharing',
   },
   {
     id: 5,
@@ -60,7 +60,7 @@ const projectsData = [
     image: '/images/peccseblock.png',
     tech: ['Blender', 'Unity', 'C#', 'VRIF'],
     filter: 'vr',
-    demoVideo: '/My Projects Records/PEC CSE VR.mp4',
+    demoVideo: 'https://drive.google.com/file/d/1SCmIrP4Zt-3Ip4YlzkkwQLbzH-KuvlA7/view?usp=sharing',
   },
   {
     id: 7,
@@ -89,7 +89,7 @@ const projectsData = [
     image: '/images/vrhomeautomation.png',
     tech: ['Unity', 'C#', 'VRIF'],
     filter: 'vr',
-    demoVideo: '/My Projects Records/VR Smart Home Automation.mp4',
+    demoVideo: 'https://drive.google.com/file/d/1ur0BxJHfI7Kgt3NTf7D5x8jR6niOTa9U/view?usp=sharing',
   },
   {
     id: 11,
@@ -108,7 +108,7 @@ const projectsData = [
     image: '/images/arfacefilter.png',
     tech: ['Unity', 'AR Foundation', 'ARCore', 'C#', 'Visual Scripting'],
     filter: 'ar',
-    demoVideo: '/My Projects Records/AR Face Filter.mp4',
+    demoVideo: 'https://drive.google.com/file/d/1cniAc2zAfZDF7SQWQyPYrnR6HDYcynAp/view?usp=sharing',
   },
   {
     id: 13,
@@ -118,7 +118,7 @@ const projectsData = [
     image: '/images/arufo.png',
     tech: ['Unity', 'AR Foundation', 'ARCore', 'C#', 'Visual Scripting'],
     filter: 'ar',
-    demoVideo: '/My Projects Records/UFO_AR.mp4',
+    demoVideo: 'https://drive.google.com/file/d/1e9GDWnp5zYmF9fU6bl89kBdjw4Z45GGa/view?usp=sharing',
   },
 ]
 
@@ -129,8 +129,23 @@ const filters = [
   { key: '3d-modeling', label: '3D Modeling' },
 ]
 
+function getEmbedUrl(url) {
+  // Convert Google Drive share link → embed preview URL
+  // e.g. https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+  //   → https://drive.google.com/file/d/FILE_ID/preview
+  if (!url) return null
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/)
+  if (driveMatch) {
+    return `https://drive.google.com/file/d/${driveMatch[1]}/preview`
+  }
+  return url // regular video URL — use as-is
+}
+
 function VideoModal({ project, onClose }) {
   if (!project) return null
+
+  const embedUrl = getEmbedUrl(project.demoVideo)
+  const isDrive = project.demoVideo && project.demoVideo.includes('drive.google.com')
 
   return (
     <div className="demo-modal__backdrop" onClick={onClose} id="demo-modal-backdrop">
@@ -156,10 +171,18 @@ function VideoModal({ project, onClose }) {
           </button>
         </div>
         <div className="demo-modal__body">
-          {project.demoVideo ? (
+          {embedUrl && isDrive ? (
+            <iframe
+              className="demo-modal__iframe"
+              src={embedUrl}
+              allow="autoplay"
+              allowFullScreen
+              title={`${project.title} Demo`}
+            />
+          ) : embedUrl ? (
             <video
               className="demo-modal__video"
-              src={project.demoVideo}
+              src={embedUrl}
               controls
               autoPlay
               playsInline
@@ -175,6 +198,7 @@ function VideoModal({ project, onClose }) {
     </div>
   )
 }
+
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all')
