@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Large video files — too big for GitHub (serve locally or via external host)
+public/My Projects Records/

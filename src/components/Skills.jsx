@@ -3,7 +3,7 @@ const skillsData = [
     icon: '📱',
     title: 'AR Development',
     description: 'Developing augmented reality solutions utilizing core frameworks to merge digital content with the real world.',
-    tags: ['AR Foundation', 'Vuforia'],
+    tags: ['AR Foundation', 'Vuforia', 'ARCore'],
   },
   {
     icon: '🥽',
@@ -25,7 +25,7 @@ const skillsData = [
     ),
     title: 'Unity Game Engine',
     description: 'Expertise in high-performance rendering, scripting, and spatial computing logic within the Unity ecosystem.',
-    tags: ['C#', 'URP', 'HDRP'],
+    tags: ['C#', 'URP', 'HDRP', 'Visual Scripting'],
   },
   {
     icon: '🧊',
