@@ -1131,6 +1131,9 @@ button {
   border-radius: var(--radius-lg);
   width: 100%;
   max-width: 860px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(124, 58, 237, 0.15);
   animation: slideUp 0.25s ease;
   overflow: hidden;
@@ -1147,6 +1150,8 @@ button {
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0; /* never collapse — always visible */
+  z-index: 2;
 }
 
 .demo-modal__label {
@@ -1190,6 +1195,9 @@ button {
 
 .demo-modal__body {
   padding: 1.5rem;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .demo-modal__video {
@@ -1217,6 +1225,32 @@ button {
   height: 100%;
   border: none;
   display: block;
+}
+
+/* Floating close button always visible on top of video */
+.demo-modal__float-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.demo-modal__float-close:hover {
+  background: rgba(220, 38, 38, 0.8);
+  transform: scale(1.1);
 }
 
 .demo-modal__placeholder {

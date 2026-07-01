@@ -144,6 +144,12 @@ function getEmbedUrl(url) {
 function VideoModal({ project, onClose }) {
   if (!project) return null
 
+  // Close on ESC key
+  const handleKey = (e) => { if (e.key === 'Escape') onClose() }
+  if (typeof window !== 'undefined') {
+    window.onkeydown = handleKey
+  }
+
   const embedUrl = getEmbedUrl(project.demoVideo)
   const isDrive = project.demoVideo && project.demoVideo.includes('drive.google.com')
 
@@ -156,6 +162,7 @@ function VideoModal({ project, onClose }) {
         aria-modal="true"
         aria-label={`${project.title} Demo`}
       >
+        {/* Header — always visible */}
         <div className="demo-modal__header">
           <div>
             <span className="demo-modal__label">Demo</span>
@@ -170,23 +177,44 @@ function VideoModal({ project, onClose }) {
             ✕
           </button>
         </div>
+
+        {/* Video body */}
         <div className="demo-modal__body">
           {embedUrl && isDrive ? (
-            <iframe
-              className="demo-modal__iframe"
-              src={embedUrl}
-              allow="autoplay"
-              allowFullScreen
-              title={`${project.title} Demo`}
-            />
+            <div className="demo-modal__iframe-wrapper">
+              {/* Floating close button on top of video */}
+              <button
+                className="demo-modal__float-close"
+                onClick={onClose}
+                aria-label="Close demo"
+              >
+                ✕
+              </button>
+              <iframe
+                className="demo-modal__iframe"
+                src={embedUrl}
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                title={`${project.title} Demo`}
+              />
+            </div>
           ) : embedUrl ? (
-            <video
-              className="demo-modal__video"
-              src={embedUrl}
-              controls
-              autoPlay
-              playsInline
-            />
+            <div className="demo-modal__iframe-wrapper">
+              <button
+                className="demo-modal__float-close"
+                onClick={onClose}
+                aria-label="Close demo"
+              >
+                ✕
+              </button>
+              <video
+                className="demo-modal__iframe"
+                src={embedUrl}
+                controls
+                autoPlay
+                playsInline
+              />
+            </div>
           ) : (
             <div className="demo-modal__placeholder">
               <span className="demo-modal__placeholder-icon">🎬</span>
@@ -198,7 +226,6 @@ function VideoModal({ project, onClose }) {
     </div>
   )
 }
-
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all')
