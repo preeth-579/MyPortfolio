@@ -56,7 +56,7 @@ export default function Hero() {
             <div className="hero__image-wrapper">
               <div className="hero__image-ring" />
               <img
-                src="/images/profile.png"
+                src="/images/Preeth Blazer.png"
                 alt="Preeth D - XR Developer"
                 className="hero__image"
               />
